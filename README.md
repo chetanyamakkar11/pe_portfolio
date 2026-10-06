@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Case Study Notebook
 
-## Getting Started
+A personal portfolio of PE-style investment case studies. Each write-up is
+backed by a real Excel workbook — the site renders it in the browser as
+formatted exhibit tables, and visitors can download the original file.
 
-First, run the development server:
+## How it works
+
+- `content/case-studies/<slug>/` — one folder per case study
+  - `meta.json` — title, sector, deal type, thesis, optional headline metrics
+  - `<anything>.xlsx` — the underwriting workbook (any filename, must be the
+    only `.xlsx` file in the folder)
+- The site reads these folders **at build time** and statically generates a
+  page per case study — no database, no CMS, no server-side upload flow.
+- Each sheet in the workbook becomes a tab on the case study page. Cell
+  values are pulled from Excel's own formatted display text (so `$184.2M`,
+  `17.2%`, `7.8x` etc. render exactly as they appear in the spreadsheet).
+- A hidden "notes" sheet can be excluded from the site by naming it with a
+  leading underscore, e.g. `_scratch`.
+
+## Adding a new case study
+
+1. Create a folder: `content/case-studies/my-company/`
+2. Drop your `.xlsx` file into it (any filename).
+3. Add a `meta.json` next to it:
+
+   ```json
+   {
+     "company": "My Company",
+     "sector": "Consumer — Direct to Consumer",
+     "dealType": "Growth Equity",
+     "date": "2026-08",
+     "status": "published",
+     "thesis": "One or two sentences on why this business is interesting.",
+     "tags": ["Optional", "Tags"],
+     "metrics": [
+       { "label": "LTM Revenue", "value": "$42.0M" },
+       { "label": "Entry Multiple", "value": "5.5x" }
+     ]
+   }
+   ```
+
+   - `status: "draft"` generates the page (useful for previewing/sharing a
+     link) but hides it from the homepage listing.
+   - `metrics` and `tags` are both optional.
+
+4. Run `npm run dev` locally to preview, then commit and deploy.
+
+## Local development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Production build
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build
+npm run start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Deployment
 
-## Learn More
+This is a standard Next.js app — deploys cleanly to
+[Vercel](https://vercel.com/new) (recommended: `vercel --prod` or connect the
+GitHub repo for auto-deploys on push) or any host that runs Next.js
+(Netlify, Render, a Node server, etc.).
 
-To learn more about Next.js, take a look at the following resources:
+Once deployed, link to the site from your personal site/resume — e.g.
+`<a href="https://your-deployed-url.vercel.app">Case Studies</a>`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Before deploying, update `lib/site-config.ts` with your real name, LinkedIn,
+personal site URL, and email.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Editing the look
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Colors, fonts: `app/globals.css` (paper/navy/bronze palette) and
+  `app/layout.tsx` (fonts — Source Serif 4 for headings, Inter for body).
+- Site name/tagline/links: `lib/site-config.ts`.
+- Card layout: `components/CaseStudyCard.tsx`.
+- Exhibit table rendering + numeric alignment heuristic:
+  `components/SheetTabs.tsx`.

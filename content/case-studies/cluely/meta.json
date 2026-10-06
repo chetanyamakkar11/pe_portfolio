@@ -1,0 +1,15 @@
+{
+  "company": "Cluely",
+  "sector": "Applied AI, Future of Work",
+  "dealType": "Growth Equity (Series A)",
+  "date": "2026-01",
+  "status": "published",
+  "thesis": "Viral AI overlay that reads a user's screen and listens to a call to surface real time answers, first marketed for interview and exam cheating and now pivoting toward sales and enterprise meetings. Thesis centers on whether distribution built on controversy converts into a durable enterprise product before platform blocks, founder credibility issues, and fast moving copycats catch up. Entry at a 120M post money Series A values a business whose headline revenue figures have already drawn public scrutiny, so this writeup treats self reported ARR as a risk factor rather than a fact.",
+  "tags": ["Consumer to Enterprise", "Series A", "Reputational Risk", "AI Overlay"],
+  "metrics": [
+    { "label": "Series A Close", "value": "Jun 2025" },
+    { "label": "Post Money Valuation", "value": "~$120M" },
+    { "label": "Total Raised", "value": "$20.3M" },
+    { "label": "Reported ARR", "value": "~$7M" }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "company": "PROS Holdings",
+  "sector": "Enterprise Software, AI Pricing and Revenue Management",
+  "dealType": "Public to Private Buyout",
+  "date": "2025-12",
+  "status": "published",
+  "thesis": "Thoma Bravo agreed to take PROS private for $23.25 per share in cash, a 41.7% premium to the last undisturbed close and roughly $1.4B in total deal value, for an AI pricing and revenue management platform used by more than 80 airlines plus a growing B2B software business. Unlike Thoma Bravo's larger 2025 and 2026 software take-privates, this agreement was backed at signing by an equity commitment letter with no disclosed third party debt, likely a function of PROS's still maturing Adjusted EBITDA margin rather than a change in strategy. The real underwriting question is whether that margin, about 9% in FY2024 and guided toward 12% in FY2025, can expand enough under Thoma Bravo ownership to justify an entry price that looks rich on trailing EBITDA, and the scenarios below suggest this only clears a typical private equity return hurdle if margin expansion lands closer to the bull case than the base case.",
+  "tags": ["Enterprise Software", "Take-Private", "Thoma Bravo", "Travel and Airlines"],
+  "metrics": [
+    { "label": "Price Per Share", "value": "$23.25" },
+    { "label": "Total Deal Value", "value": "~$1.4B" },
+    { "label": "Premium to Last Close", "value": "41.7%" },
+    { "label": "FY2025E Adj. EBITDA", "value": "~$43M" }
+  ]
+}
